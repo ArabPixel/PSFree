@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="./PSFree.manifest">
+<html manifest="./PSFree.manifest">  
   <head>
     <script>
         function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));document.title="Installing offline cache: " + Percent + "%";}
@@ -19,7 +19,7 @@
       <button onclick="showabout()" class="menu-btn" id="about-btn">About</button>
     </div>
 
-    <div class="header">
+    <div class="header" id="header">
       <div class="header-title" id="header-title">PSFree</div>
     </div>
 
@@ -41,12 +41,12 @@
     
     <div id="payloads-page" style="display: none;">
       <nav class="floating-menu-payloads">
-        <button onclick="showtoolspayloads()">Tools</button>
-        <button onclick="showgamepayloads()">Games</button>
-        <button onclick="showlinuxpayloads()">Linux</button>
+        <button id="floating-tools" onclick="showtoolspayloads()">Tools</button>
+        <button id="floating-games" onclick="showgamepayloads()">Games</button>
+        <button id="floating-linux" onclick="showlinuxpayloads()">Linux</button>
       </nav>
       <div id="payloads-tools" style="display: block;">
-        <h2 id="tools">Tools</h2>
+        <h2 id="tools1">Tools</h2>
           <div class="button-container" id="button-container">
             <button id="binloader">Bin-Loader</button>
             <button data-func="load_AppDumper">App-Dumper</button>
@@ -76,7 +76,7 @@
           </div>
       </div>
       <div id="payloads-game" style="display: none;">
-        <h2 id="tools">Game</h2>
+        <h2 id="tools2">Game</h2>
           <div class="button-container" id="button-container">
             <button data-func="load_GTAArbic">GTAV-ArabicGuy-1.27</button>
             <button data-func="load_GTAArbic3">GTAV-ArabicGuy-1.32</button>
@@ -95,7 +95,7 @@
           </div>
       </div>
       <div id="payloads-linux" style="display: none;">
-          <h2 id="tools">Linux</h2>
+          <h2 id="tools3">Linux</h2>
           <div class="button-container" id="button-container">
             <button data-func="load_Linux">Linux-1GB</button>
             <button data-func="load_Linux2gb">Linux-2GB</button>
@@ -172,6 +172,20 @@
           <p id="agtext">Enable Debug Console</p>
         </label>
       </div>
+      
+      <!-- Select language -->
+      <div id="chooselang">
+        <h3>Language</h3>
+        <div>
+          <label>
+            <input type="radio" name="language" value="en" onchange="savelanguage(); setLanguage('en');"> English
+          </label>
+          <label>
+            <input type="radio" name="language" value="ar" onchange="savelanguage(); setLanguage('ar'); "> Arabic
+          </label>
+        </div>
+      </div>
+
 
       <button onclick="closesettings()" class="close-btn" id="close-settings">Close</button>
       <!--<button data-func="load_AppCache" class="install-psfrl" id="install-psfrl">Install PSFree-Lite</button>-->

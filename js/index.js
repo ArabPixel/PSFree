@@ -127,21 +127,21 @@ function CheckFW() {
 
     document.title = "PSFree | " + fwVersion
   } else {
-    let platform = 'Unknown platform';
+    // let platform = 'Unknown platform';
 
-    if (/Android/.test(userAgent)) platform = 'Android';
-    else if (/iPhone|iPad|iPod/.test(userAgent)) platform = 'iOS';
-    else if (/Macintosh/.test(userAgent)) platform = 'MacOS';
-    else if (/Windows/.test(userAgent)) platform = 'Windows';
-    else if (/Linux/.test(userAgent)) platform = 'Linux';
+    // if (/Android/.test(userAgent)) platform = 'Android';
+    // else if (/iPhone|iPad|iPod/.test(userAgent)) platform = 'iOS';
+    // else if (/Macintosh/.test(userAgent)) platform = 'MacOS';
+    // else if (/Windows/.test(userAgent)) platform = 'Windows';
+    // else if (/Linux/.test(userAgent)) platform = 'Linux';
 
-    document.getElementById('PS4FW').textContent = `You're not on a PS4, platform: ${platform}`;
-    document.getElementById('PS4FW').style.color = 'red';
+    // document.getElementById('PS4FW').textContent = `You're not on a PS4, platform: ${platform}`;
+    // document.getElementById('PS4FW').style.color = 'red';
 
-    elementsToHide.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.style.display = 'none';
-    });
+    // elementsToHide.forEach(id => {
+    //   const el = document.getElementById(id);
+    //   if (el) el.style.display = 'none';
+    // });
   }
 }
 
@@ -292,6 +292,21 @@ function savejbflavor() {
   });
 }
 
+function savelanguage() {
+  const radios = document.querySelectorAll('input[name="language"]');
+  radios.forEach(radio => {
+    if (radio.checked) {
+      localStorage.setItem('language', radio.value);
+    }
+  });
+}
+
+function loadlanguage(){
+  var language = localStorage.getItem('language');
+  if (language == null) document.querySelector('input[name=language][value="en"]').checked = true;
+  document.querySelector('input[name="language"][value="' + language + '"').checked = true;
+}
+
 function loadajbsettings(){
   if (savedaj !== null) {
     ckbaj.checked = savedaj === 'true';
@@ -429,6 +444,8 @@ function loadsettings() {
   loadjbflavor();
   checksettings();
   CheckFW();
+  setLanguage(localStorage.getItem('language'))
+  loadlanguage();
 }
 
 function onCheckboxChange(checked) {
@@ -437,4 +454,323 @@ function onCheckboxChange(checked) {
   } else {
     console.log('Checkbox is unchecked!');
   }
+}
+
+// Language
+// --- Language Strings (from translation-strings immersive) ---
+const languages = {
+  "en": {
+    "title": "PSFree",
+    "menuPayloads": "Payloads",
+    "menuForceCache": "Force-Cache",
+    "menuUpdateExploit": "Update-Exploit",
+    "menuSettings": "Settings",
+    "menuAbout": "About",
+    "headerTitle": "PSFree",
+    "ps4FwStatus": "PS4 FW: 0.00 | Compatible",
+    "jailbreakButtonTitle": "PlayStation",
+    "payloadsToolsHeader": "Tools",
+    "payloadsGameHeader": "Game",
+    "payloadsLinuxHeader": "Linux",
+    "binLoader": "Bin-Loader",
+    "appDumper": "App-Dumper",
+    "kernelDumper": "Kernel-Dumper",
+    "ps4DumperVtx": "PS4-Dumper-VTX",
+    "app2Usb": "App2USB",
+    "disableUpdates": "Disable-Updates",
+    "enableUpdates": "Enable-Updates",
+    "ftp": "FTP",
+    "historyBlocker": "History-Blocker",
+    "kernelClock": "Kernel-Clock",
+    "orbisToolbox": "Orbis-Toolbox",
+    "ps4Debug": "PS4-Debug",
+    "toDex": "ToDex",
+    "toDev": "ToDev",
+    "toKratos": "ToKratos",
+    "toCex": "ToCex",
+    "backupDb": "Backup-DB",
+    "restoreDb": "Restore-DB",
+    "rifRenamer": "RIF-Renamer",
+    "exitIdu": "ExitIDU",
+    "disableAslr": "Disable-ASLR",
+    "moduleDumper": "Module-Dumper",
+    "webrRte": "WebRTE",
+    "permanentUart": "Permanent-UART",
+    "pupDecrypt": "PUP-Decrypt",
+    "gtaArabicGuy127": "GTAV-ArabicGuy-1.27",
+    "gtaArabicGuy132": "GTAV-ArabicGuy-1.32",
+    "gtaArabicGuy133": "GTAV-ArabicGuy-1.33",
+    "gtaBeefQueefMod133": "GTAV-BeefQueefMod-1.33",
+    "gtaBeefQueefMod134": "GTAV-BeefQueefMod-1.34",
+    "gtaBeefQueefMod138": "GTAV-BeefQueefMod-1.38",
+    "gtaWildeModz132": "GTAV-WildeModz-1.32",
+    "gtaWildeModz133": "GTAV-WildeModz-1.33",
+    "gtaWildeModz138": "GTAV-WildeModz-1.38",
+    "rdr2OystersMenu100": "RDR2-OystersMenu-1.00",
+    "rdr2OystersMenu113": "RDR2-OystersMenu-1.13",
+    "rdr2OystersMenu119": "RDR2-OystersMenu-1.19",
+    "rdr2OystersMenu124": "RDR2-OystersMenu-1.24",
+    "rdr2OystersMenu129": "RDR2-OystersMenu-1.29",
+    "linux1gb": "Linux-1GB",
+    "linux2gb": "Linux-2GB",
+    "linux3gb": "Linux-3GB",
+    "linux4gb": "Linux-4GB",
+    "linux5gb": "Linux-5GB",
+    "debugConsoleHeader": "Debug Console",
+    "aboutPsfreeHeader": "About PSFree",
+    "aboutVersion": "Version: 1.5.1",
+    "aboutDescription": "A simple web interface for PS4 jailbreak.",
+    "closeButton": "Close",
+    "settingsPsfreeHeader": "Settings PSFree",
+    "ps4FirmwaresSupportedHeader": "PS4 Firmwares supported",
+    "chooseYourFlavorHeader": "Choose your flavor",
+    "goldHenOption": "GoldHEN",
+    "henOption": "HEN",
+    "autoJailbreakText": "Auto-Jailbreak",
+    "enableDebugConsoleText": "Enable Debug Console",
+    "languageHeader": "Language",
+    "englishOption": "English",
+    "arabicOption": "Arabic",
+    "installPsfreeLite": "Install PSFree-Lite",
+    "installingOfflineCache": "Installing offline cache: ",
+    "cacheSuccess": "Cache Success !"
+  },
+  "ar": {
+    "title": "PSFree",
+    "menuPayloads": "الإضافات",
+    "menuForceCache": "فرض التخزين المؤقت",
+    "menuUpdateExploit": "تحديث الثغرة",
+    "menuSettings": "الإعدادات",
+    "menuAbout": "حول",
+    "headerTitle": "PSFree",
+    "ps4FwStatus": "PS4 اصدار: 0.00 | متوافق",
+    "jailbreakButtonTitle": "بلايستيشن",
+    "payloadsToolsHeader": "الأدوات",
+    "payloadsGameHeader": "الألعاب",
+    "payloadsLinuxHeader": "لينكس",
+    "binLoader": "محمل ملفات bin",
+    "appDumper": "ناسخ التطبيقات",
+    "kernelDumper": "ناسخ الكيرنال",
+    "ps4DumperVtx": "ناسخ PS4-VTX",
+    "app2Usb": "تطبيق إلى USB",
+    "disableUpdates": "تعطيل التحديثات",
+    "enableUpdates": "تفعيل التحديثات",
+    "ftp": "FTP",
+    "historyBlocker": "مانع السجل",
+    "kernelClock": "كسر سرعة النواة",
+    "orbisToolbox": "صندوق أدوات أوربيس",
+    "ps4Debug": "ps4Debug",
+    "toDex": "toDex",
+    "toDev": "toDev",
+    "toKratos": "إلى كراتوس",
+    "toCex": "إلى Cex",
+    "backupDb": "نسخ قاعدة البيانات احتياطيًا",
+    "restoreDb": "استعادة قاعدة البيانات",
+    "rifRenamer": "إعادة تسمية ملفات RIF",
+    "exitIdu": "الخروج من IDU",
+    "disableAslr": "تعطيل ASLR",
+    "moduleDumper": "ناسخ الإضافة",
+    "webrRte": "WebRTE",
+    "permanentUart": "UART دائم",
+    "pupDecrypt": "فك تشفير PUP",
+    "gtaArabicGuy127": "GTAV-ArabicGuy-1.27",
+    "gtaArabicGuy132": "GTAV-ArabicGuy-1.32",
+    "gtaArabicGuy133": "GTAV-ArabicGuy-1.33",
+    "gtaBeefQueefMod133": "GTAV-BeefQueefMod-1.33",
+    "gtaBeefQueefMod134": "GTAV-BeefQueefMod-1.34",
+    "gtaBeefQueefMod138": "GTAV-BeefQueefMod-1.38",
+    "gtaWildeModz132": "GTAV-WildeModz-1.32",
+    "gtaWildeModz133": "GTAV-WildeModz-1.33",
+    "gtaWildeModz138": "GTAV-WildeModz-1.38",
+    "rdr2OystersMenu100": "RDR2-OystersMenu-1.00",
+    "rdr2OystersMenu113": "RDR2-OystersMenu-1.13",
+    "rdr2OystersMenu119": "RDR2-OystersMenu-1.19",
+    "rdr2OystersMenu124": "RDR2-OystersMenu-1.24",
+    "rdr2OystersMenu129": "RDR2-OystersMenu-1.29",
+    "linux1gb": "لينكس-1 جيجابايت",
+    "linux2gb": "لينكس-2 جيجابايت",
+    "linux3gb": "لينكس-3 جيجابايت",
+    "linux4gb": "لينكس-4 جيجابايت",
+    "linux5gb": "لينكس-5 جيجابايت",
+    "debugConsoleHeader": "وحدة تحكم",
+    "aboutPsfreeHeader": "حول PSFree",
+    "aboutVersion": "الإصدار: 1.5.1",
+    "aboutDescription": "واجهة ويب بسيطة لجيلبريك PS4.",
+    "closeButton": "إغلاق",
+    "settingsPsfreeHeader": "إعدادات PSFree",
+    "ps4FirmwaresSupportedHeader": "إصدارات PS4 المدعومة",
+    "chooseYourFlavorHeader": "اختر نوع الـ HEN",
+    "goldHenOption": "GoldHEN - هين الذهبي",
+    "henOption": "هين",
+    "autoJailbreakText": "تهكير تلقائي",
+    "enableDebugConsoleText": "تمكين وحدة تحكم",
+    "languageHeader": "اللغة",
+    "englishOption": "الإنجليزية",
+    "arabicOption": "العربية",
+    "installPsfreeLite": "تثبيت PSFree-Lite",
+    "installingOfflineCache": "جارٍ تثبيت ذاكرة التخزين المؤقت دون اتصال: ",
+    "cacheSuccess": "تم التخزين المؤقت !"
+  }
+};
+var language = localStorage.getItem('language');
+
+let currentLanguage = language == null ? "en": language; // Default language
+
+// Function to update the UI with the selected language
+function setLanguage(lang) {
+    currentLanguage = lang;
+    const strings = languages[currentLanguage];
+
+    if (!strings) {
+        console.error(`Language strings for '${lang}' not found.`);
+        return;
+    }
+
+    // Update document title
+    document.title = strings.title;
+
+    // Update Floating Menu Buttons
+    document.getElementById('payloadsbtn').textContent = strings.menuPayloads;
+    document.getElementById('generate-cache-btn').textContent = strings.menuForceCache;
+    document.getElementById('update-exploit').textContent = strings.menuUpdateExploit;
+    document.getElementById('settings-btn').textContent = strings.menuSettings;
+    document.getElementById('about-btn').textContent = strings.menuAbout;
+
+    // Update Header
+    document.getElementById('header-title').textContent = strings.headerTitle;
+
+    // Update PS4 FW Status
+    document.getElementById('PS4FW').textContent = strings.ps4FwStatus;
+
+    // Update Jailbreak Button Title
+    document.getElementById('jailbreak').title = strings.jailbreakButtonTitle;
+
+    // Update Payloads Headers
+    document.getElementById('floating-tools').textContent = strings.payloadsToolsHeader;
+    document.getElementById('floating-games').textContent = strings.payloadsGameHeader;
+    document.getElementById('floating-linux').textContent = strings.payloadsLinuxHeader;
+    document.getElementById('tools1').textContent = strings.payloadsToolsHeader;
+    document.getElementById('tools2').textContent = strings.payloadsGameHeader;
+    document.getElementById('tools3').textContent = strings.payloadsLinuxHeader;
+
+
+    // Update Payload Buttons (Tools)
+    const toolButtons = document.querySelector('#payloads-tools .button-container').children;
+    const toolButtonMap = {
+        "binloader": "binLoader",
+        "load_AppDumper": "appDumper",
+        "load_KernelDumper": "kernelDumper",
+        "load_VTXDumper": "ps4DumperVtx",
+        "load_App2USB": "app2Usb",
+        "load_DisableUpdates": "disableUpdates",
+        "load_EnableUpdates": "enableUpdates",
+        "load_FTP": "ftp",
+        "load_HistoryBlocker": "historyBlocker",
+        "load_KernelClock": "kernelClock",
+        "load_Orbis": "orbisToolbox",
+        "load_PS4Debug": "ps4Debug",
+        "load_ToDex": "toDex",
+        "load_ToDev": "toDev",
+        "load_ToKratos": "toKratos",
+        "load_ToCex": "toCex",
+        "load_BackupDB": "backupDb",
+        "load_RestoreDB": "restoreDb",
+        "load_RIFRenamer": "rifRenamer",
+        "load_ExitIDU": "exitIdu",
+        "load_DisableASLR": "disableAslr",
+        "load_ModuleDumper": "moduleDumper",
+        "load_WebrRTE": "webrRte",
+        "load_PermanentUART": "permanentUart",
+        "load_PUPDecrypt": "pupDecrypt"
+    };
+    for (let i = 0; i < toolButtons.length; i++) {
+        const button = toolButtons[i];
+        const key = button.id || button.dataset.func; // Use id first, then data-func
+        if (key && toolButtonMap[key]) {
+            button.textContent = strings[toolButtonMap[key]];
+        }
+    }
+
+    // Update Payload Buttons (Games)
+    const gameButtons = document.querySelector('#payloads-game .button-container').children;
+    const gameButtonMap = {
+        "load_GTAArbic": "gtaArabicGuy127",
+        "load_GTAArbic3": "gtaArabicGuy132",
+        "load_GTAArbic33": "gtaArabicGuy133",
+        "load_GTABQ133": "gtaBeefQueefMod133",
+        "load_GTABQ134": "gtaBeefQueefMod134",
+        "load_GTABQ138": "gtaBeefQueefMod138",
+        "load_GTAWM132": "gtaWildeModz132",
+        "load_GTAWM133": "gtaWildeModz133",
+        "load_GTAWM138": "gtaWildeModz138",
+        "load_Oysters100": "rdr2OystersMenu100",
+        "load_Oysters113": "rdr2OystersMenu113",
+        "load_Oysters119": "rdr2OystersMenu119",
+        "load_Oysters124": "rdr2OystersMenu124",
+        // Note: The HTML has "load_Oysters124" twice for 1.24 and 1.29. This is an HTML issue.
+        // Assuming the last one should be "rdr2OystersMenu129"
+        "load_Oysters129": "rdr2OystersMenu129" // Assuming this will be the data-func for 1.29
+    };
+    for (let i = 0; i < gameButtons.length; i++) {
+        const button = gameButtons[i];
+        const key = button.dataset.func;
+        if (key && gameButtonMap[key]) {
+            button.textContent = strings[gameButtonMap[key]];
+        }
+    }
+
+    // Update Payload Buttons (Linux)
+    const linuxButtons = document.querySelector('#payloads-linux .button-container').children;
+    const linuxButtonMap = {
+        "load_Linux": "linux1gb",
+        "load_Linux2gb": "linux2gb",
+        "load_Linux3gb": "linux3gb",
+        "load_Linux4gb": "linux4gb",
+        "load_Linux5gb": "linux5gb"
+    };
+    for (let i = 0; i < linuxButtons.length; i++) {
+        const button = linuxButtons[i];
+        const key = button.dataset.func;
+        if (key && linuxButtonMap[key]) {
+            button.textContent = strings[linuxButtonMap[key]];
+        }
+    }
+
+    // Update Debug Console
+    document.querySelector('#DebugConsole h3').textContent = strings.debugConsoleHeader;
+
+    // Update About Popup
+    document.querySelector('#about-popup h2').textContent = strings.aboutPsfreeHeader;
+    document.querySelector('#about-popup p:nth-of-type(1)').textContent = strings.aboutVersion;
+    document.querySelector('#about-popup p:nth-of-type(2)').textContent = strings.aboutDescription;
+    document.getElementById('close-about').textContent = strings.closeButton;
+
+    // Update Settings Popup
+    document.querySelector('#settings-popup h2').textContent = strings.settingsPsfreeHeader;
+    document.querySelector('#PS4FWOK h3').textContent = strings.ps4FirmwaresSupportedHeader;
+    document.querySelector('#choosejb h3').textContent = strings.chooseYourFlavorHeader;
+    document.getElementById('autojbchkb').querySelector('p').textContent = strings.autoJailbreakText;
+    document.getElementById('debugconsolechkb').querySelector('p').textContent = strings.enableDebugConsoleText;
+    document.getElementById('chooselang').querySelector('h3').textContent = strings.languageHeader;
+    document.getElementById('close-settings').textContent = strings.closeButton;
+    document.querySelectorAll('input[name="language"][value="ar"]').textContent = strings.arabicOption;
+    document.querySelectorAll('input[name="language"][value="en"]').textContent = strings.englishOption;
+    // if (document.getElementById('install-psfrl')) { // Check if the element exists
+    //     document.getElementById('install-psfrl').textContent = strings.installPsfreeLite;
+    // }
+
+    // Set text direction based on language
+    const psfreetop = document.getElementById("header");
+    document.body.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    if (document.body.dir == 'rtl'){
+      psfreetop.style.justifyContent = "flex-end";
+      document.getElementById("DebugConsole").querySelector('h3').style.right = '5%';
+      document.getElementById("DebugConsole").querySelector('h3').style.left = 'inherit';
+
+    }else{
+      psfreetop.style.justifyContent = "flex-start";
+        document.getElementById("DebugConsole").querySelector('h3').style.right = 'inherit';
+      document.getElementById("DebugConsole").querySelector('h3').style.left = '5%';
+    }
+    
 }

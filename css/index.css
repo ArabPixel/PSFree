@@ -295,7 +295,7 @@ body {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-#tools {
+#tools1, #tools2, #tools3 {
     color: white;
     display: flex;
     align-items: center;
@@ -388,6 +388,21 @@ body {
   font-family: 'Arial', sans-serif;
   font-size: 1.1em;
   font-weight: bold;
+}
+
+#chooselang{
+  width: 250px; 
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: center;
+  margin: 1%;
 }
 
 .radio-group {
