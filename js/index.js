@@ -130,21 +130,21 @@ function CheckFW() {
 
     document.title = "PSFree | " + fwVersion
   } else {
-    platform = 'Unknown platform';
+    // platform = 'Unknown platform';
 
-    if (/Android/.test(userAgent)) platform = 'Android';
-    else if (/iPhone|iPad|iPod/.test(userAgent)) platform = 'iOS';
-    else if (/Macintosh/.test(userAgent)) platform = 'MacOS';
-    else if (/Windows/.test(userAgent)) platform = 'Windows';
-    else if (/Linux/.test(userAgent)) platform = 'Linux';
+    // if (/Android/.test(userAgent)) platform = 'Android';
+    // else if (/iPhone|iPad|iPod/.test(userAgent)) platform = 'iOS';
+    // else if (/Macintosh/.test(userAgent)) platform = 'MacOS';
+    // else if (/Windows/.test(userAgent)) platform = 'Windows';
+    // else if (/Linux/.test(userAgent)) platform = 'Linux';
 
-    document.getElementById('PS4FW').textContent = `You're not on a PS4, platform: ${platform}`;
-    document.getElementById('PS4FW').style.color = 'red';
+    // document.getElementById('PS4FW').textContent = `You're not on a PS4, platform: ${platform}`;
+    // document.getElementById('PS4FW').style.color = 'red';
 
-    elementsToHide.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.style.display = 'none';
-    });
+    // elementsToHide.forEach(id => {
+    //   const el = document.getElementById(id);
+    //   if (el) el.style.display = 'none';
+    // });
   }
 }
 
@@ -472,17 +472,14 @@ function onCheckboxChange(checked) {
 // Language Strings
 const languages = {
   "en": {
-    "title": "PSFree",
     "menuPayloads": "Payloads",
     "menuForceCache": "Force-Cache",
     "menuUpdateExploit": "Update-Exploit",
     "menuSettings": "Settings",
     "menuAbout": "About",
-    "headerTitle": "PSFree",
     "ps4FwSupported": `PS4 FW: ${ps4FwVersion} | Compatible`,
     "ps4FwUnsupported": `PS4 FW: ${ps4FwVersion} | Incompatible`,
     "notPs4": `You're not on a PS4, platform: ${platform}`,
-    "jailbreakButtonTitle": "PlayStation",
     "payloadsToolsHeader": "Tools",
     "payloadsGameHeader": "Game",
     "payloadsLinuxHeader": "Linux",
@@ -511,20 +508,6 @@ const languages = {
     "webrRte": "WebRTE",
     "permanentUart": "Permanent-UART",
     "pupDecrypt": "PUP-Decrypt",
-    "gtaArabicGuy127": "GTAV-ArabicGuy-1.27",
-    "gtaArabicGuy132": "GTAV-ArabicGuy-1.32",
-    "gtaArabicGuy133": "GTAV-ArabicGuy-1.33",
-    "gtaBeefQueefMod133": "GTAV-BeefQueefMod-1.33",
-    "gtaBeefQueefMod134": "GTAV-BeefQueefMod-1.34",
-    "gtaBeefQueefMod138": "GTAV-BeefQueefMod-1.38",
-    "gtaWildeModz132": "GTAV-WildeModz-1.32",
-    "gtaWildeModz133": "GTAV-WildeModz-1.33",
-    "gtaWildeModz138": "GTAV-WildeModz-1.38",
-    "rdr2OystersMenu100": "RDR2-OystersMenu-1.00",
-    "rdr2OystersMenu113": "RDR2-OystersMenu-1.13",
-    "rdr2OystersMenu119": "RDR2-OystersMenu-1.19",
-    "rdr2OystersMenu124": "RDR2-OystersMenu-1.24",
-    "rdr2OystersMenu129": "RDR2-OystersMenu-1.29",
     "linux1gb": "Linux-1GB",
     "linux2gb": "Linux-2GB",
     "linux3gb": "Linux-3GB",
@@ -538,31 +521,24 @@ const languages = {
     "settingsPsfreeHeader": "Settings PSFree",
     "ps4FirmwaresSupportedHeader": "PS4 Firmwares supported",
     "chooseYourFlavorHeader": "Choose your flavor",
-    "goldHenOption": "GoldHEN",
-    "henOption": "HEN",
     "autoJailbreakText": "Auto-Jailbreak",
     "enableDebugConsoleText": "Enable Debug Console",
     "languageHeader": "Language",
     "englishOption": "English",
     "arabicOption": "Arabic",
     "installPsfreeLite": "Install PSFree-Lite",
-    "installingOfflineCache": "Installing offline cache: ",
-    "cacheSuccess": "Cache Success !",
     "arabicOption": "Arabic",
     "englishOption": "English"
   },
   "ar": {
-    "title": "PSFree",
     "menuPayloads": "الإضافات",
     "menuForceCache": "فرض التخزين المؤقت",
     "menuUpdateExploit": "تحديث الثغرة",
     "menuSettings": "الإعدادات",
     "menuAbout": "حول",
-    "headerTitle": "PSFree",
     "ps4FwSupported": `بلايستايشن 4 إصدار: ${ps4FwVersion} | متوافق`,
     "ps4FwUnsupported": `بلايستايشن 4 إصدار ${ps4FwVersion || 'غير معروف'} | غير متوافق`,
     "notPs4": `أنت لست على جهاز بلايستايشن 4. المنصة: ${platform == undefined ? "غير معروفة" : platform}`,
-    "jailbreakButtonTitle": "بلايستيشن",
     "payloadsToolsHeader": "الأدوات",
     "payloadsGameHeader": "الألعاب",
     "payloadsLinuxHeader": "لينكس",
@@ -591,20 +567,6 @@ const languages = {
     "webrRte": "WebRTE",
     "permanentUart": "UART دائم",
     "pupDecrypt": "فك تشفير PUP",
-    "gtaArabicGuy127": "GTAV-ArabicGuy-1.27",
-    "gtaArabicGuy132": "GTAV-ArabicGuy-1.32",
-    "gtaArabicGuy133": "GTAV-ArabicGuy-1.33",
-    "gtaBeefQueefMod133": "GTAV-BeefQueefMod-1.33",
-    "gtaBeefQueefMod134": "GTAV-BeefQueefMod-1.34",
-    "gtaBeefQueefMod138": "GTAV-BeefQueefMod-1.38",
-    "gtaWildeModz132": "GTAV-WildeModz-1.32",
-    "gtaWildeModz133": "GTAV-WildeModz-1.33",
-    "gtaWildeModz138": "GTAV-WildeModz-1.38",
-    "rdr2OystersMenu100": "RDR2-OystersMenu-1.00",
-    "rdr2OystersMenu113": "RDR2-OystersMenu-1.13",
-    "rdr2OystersMenu119": "RDR2-OystersMenu-1.19",
-    "rdr2OystersMenu124": "RDR2-OystersMenu-1.24",
-    "rdr2OystersMenu129": "RDR2-OystersMenu-1.29",
     "linux1gb": "لينكس-1 جيجابايت",
     "linux2gb": "لينكس-2 جيجابايت",
     "linux3gb": "لينكس-3 جيجابايت",
@@ -618,16 +580,10 @@ const languages = {
     "settingsPsfreeHeader": "إعدادات PSFree",
     "ps4FirmwaresSupportedHeader": "إصدارات PS4 المدعومة",
     "chooseYourFlavorHeader": "اختر نوع الـ HEN",
-    "goldHenOption": "GoldHEN - هين الذهبي",
-    "henOption": "هين",
     "autoJailbreakText": "تهكير تلقائي",
     "enableDebugConsoleText": "تمكين وحدة تحكم",
     "languageHeader": "اللغة",
-    "englishOption": "الإنجليزية",
-    "arabicOption": "العربية",
     "installPsfreeLite": "تثبيت PSFree-Lite",
-    "installingOfflineCache": "جارٍ تثبيت ذاكرة التخزين المؤقت دون اتصال: ",
-    "cacheSuccess": "تم التخزين المؤقت !",
     "arabicOption": "العربية",
     "englishOption": "الإنجليزية"
   }
@@ -646,18 +602,12 @@ function setLanguage(lang) {
         return;
     }
 
-    // Update document title
-    document.title = strings.title;
-
     // Update Floating Menu Buttons
     document.getElementById('payloadsbtn').textContent = strings.menuPayloads;
     document.getElementById('generate-cache-btn').textContent = strings.menuForceCache;
     document.getElementById('update-exploit').textContent = strings.menuUpdateExploit;
     document.getElementById('settings-btn').textContent = strings.menuSettings;
     document.getElementById('about-btn').textContent = strings.menuAbout;
-
-    // Update Header
-    document.getElementById('header-title').textContent = strings.headerTitle;
 
     // Update PS4FW Message
     if (ps4FwVersion != undefined && Number(ps4FwVersion) <= 9.6){
