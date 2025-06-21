@@ -130,21 +130,21 @@ function CheckFW() {
 
     document.title = "PSFree | " + fwVersion
   } else {
-    // platform = 'Unknown platform';
+    platform = 'Unknown platform';
 
-    // if (/Android/.test(userAgent)) platform = 'Android';
-    // else if (/iPhone|iPad|iPod/.test(userAgent)) platform = 'iOS';
-    // else if (/Macintosh/.test(userAgent)) platform = 'MacOS';
-    // else if (/Windows/.test(userAgent)) platform = 'Windows';
-    // else if (/Linux/.test(userAgent)) platform = 'Linux';
+    if (/Android/.test(userAgent)) platform = 'Android';
+    else if (/iPhone|iPad|iPod/.test(userAgent)) platform = 'iOS';
+    else if (/Macintosh/.test(userAgent)) platform = 'MacOS';
+    else if (/Windows/.test(userAgent)) platform = 'Windows';
+    else if (/Linux/.test(userAgent)) platform = 'Linux';
 
-    // document.getElementById('PS4FW').textContent = `You're not on a PS4, platform: ${platform}`;
-    // document.getElementById('PS4FW').style.color = 'red';
+    document.getElementById('PS4FW').textContent = `You're not on a PS4, platform: ${platform}`;
+    document.getElementById('PS4FW').style.color = 'red';
 
-    // elementsToHide.forEach(id => {
-    //   const el = document.getElementById(id);
-    //   if (el) el.style.display = 'none';
-    // });
+    elementsToHide.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
   }
 }
 
