@@ -479,8 +479,8 @@ const languages = {
     "menuSettings": "Settings",
     "menuAbout": "About",
     "headerTitle": "PSFree",
-    "ps4FwSupported": `PS4 FW: | ${ps4FwVersion} Compatible`,
-    "ps4FwUnsupported": `PS4 FW: | ${ps4FwVersion} Incompatible`,
+    "ps4FwSupported": `PS4 FW: ${ps4FwVersion} | Compatible`,
+    "ps4FwUnsupported": `PS4 FW: ${ps4FwVersion} | Incompatible`,
     "notPs4": `You're not on a PS4, platform: ${platform}`,
     "jailbreakButtonTitle": "PlayStation",
     "payloadsToolsHeader": "Tools",
@@ -547,7 +547,9 @@ const languages = {
     "arabicOption": "Arabic",
     "installPsfreeLite": "Install PSFree-Lite",
     "installingOfflineCache": "Installing offline cache: ",
-    "cacheSuccess": "Cache Success !"
+    "cacheSuccess": "Cache Success !",
+    "arabicOption": "Arabic",
+    "englishOption": "English"
   },
   "ar": {
     "title": "PSFree",
@@ -625,7 +627,9 @@ const languages = {
     "arabicOption": "العربية",
     "installPsfreeLite": "تثبيت PSFree-Lite",
     "installingOfflineCache": "جارٍ تثبيت ذاكرة التخزين المؤقت دون اتصال: ",
-    "cacheSuccess": "تم التخزين المؤقت !"
+    "cacheSuccess": "تم التخزين المؤقت !",
+    "arabicOption": "العربية",
+    "englishOption": "الإنجليزية"
   }
 };
 var language = localStorage.getItem('language');
@@ -657,15 +661,19 @@ function setLanguage(lang) {
 
     // Update PS4FW Message
     if (ps4FwVersion != undefined && Number(ps4FwVersion) <= 9.6){
-      // For some reason ps4FwVersion variable shows undefined even tho it is.
+      // For some reason ps4FwVersion and platform variables shows undefined even tho it is.
       let message = strings.ps4FwSupported.replace("undefined", ps4FwVersion)
       document.getElementById("PS4FW").textContent = message;
       document.getElementById("PS4FW").style.color = "green";
-    }else if (ps4FwVersion == undefined || ps4FwVersion == NaN){
-      document.getElementById("PS4FW").textContent = strings.ps4FUnsupported;
+    }else if (ps4FwVersion != undefined && Number(ps4FwVersion) > 9.6){
+      let message = strings.ps4FwUnsupported.replace(undefined, ps4FwVersion);
+      document.getElementById("PS4FW").textContent = message;
       document.getElementById("PS4FW").style.color = "red";
     }else {
-      document.getElementById("PS4FW").textContent = strings.notPs4;
+      let message;
+      if (currentLanguage == "en") message = strings.notPs4.replace("undefined", platform);
+      if (currentLanguage == "ar") message = strings.notPs4.replace("غير معروفة", platform);
+      document.getElementById("PS4FW").textContent = message;
       document.getElementById("PS4FW").style.color = "red";
     }
 
@@ -718,34 +726,6 @@ function setLanguage(lang) {
         }
     }
 
-    // Update Payload Buttons (Games)
-    const gameButtons = document.querySelector('#payloads-game .button-container').children;
-    const gameButtonMap = {
-        "load_GTAArbic": "gtaArabicGuy127",
-        "load_GTAArbic3": "gtaArabicGuy132",
-        "load_GTAArbic33": "gtaArabicGuy133",
-        "load_GTABQ133": "gtaBeefQueefMod133",
-        "load_GTABQ134": "gtaBeefQueefMod134",
-        "load_GTABQ138": "gtaBeefQueefMod138",
-        "load_GTAWM132": "gtaWildeModz132",
-        "load_GTAWM133": "gtaWildeModz133",
-        "load_GTAWM138": "gtaWildeModz138",
-        "load_Oysters100": "rdr2OystersMenu100",
-        "load_Oysters113": "rdr2OystersMenu113",
-        "load_Oysters119": "rdr2OystersMenu119",
-        "load_Oysters124": "rdr2OystersMenu124",
-        // Note: The HTML has "load_Oysters124" twice for 1.24 and 1.29. This is an HTML issue.
-        // Assuming the last one should be "rdr2OystersMenu129"
-        "load_Oysters129": "rdr2OystersMenu129" // Assuming this will be the data-func for 1.29
-    };
-    for (let i = 0; i < gameButtons.length; i++) {
-        const button = gameButtons[i];
-        const key = button.dataset.func;
-        if (key && gameButtonMap[key]) {
-            button.textContent = strings[gameButtonMap[key]];
-        }
-    }
-
     // Update Payload Buttons (Linux)
     const linuxButtons = document.querySelector('#payloads-linux .button-container').children;
     const linuxButtonMap = {
@@ -780,8 +760,8 @@ function setLanguage(lang) {
     document.getElementById('debugconsolechkb').querySelector('p').textContent = strings.enableDebugConsoleText;
     document.getElementById('chooselang').querySelector('h3').textContent = strings.languageHeader;
     document.getElementById('close-settings').textContent = strings.closeButton;
-    document.querySelectorAll('input[name="language"][value="ar"]').textContent = strings.arabicOption;
-    document.querySelectorAll('input[name="language"][value="en"]').textContent = strings.englishOption;
+    document.getElementById('arLang').textContent = strings.arabicOption;
+    document.getElementById('enLang').textContent = strings.englishOption;
     // if (document.getElementById('install-psfrl')) { // Check if the element exists
     //     document.getElementById('install-psfrl').textContent = strings.installPsfreeLite;
     // }

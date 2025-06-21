@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html manifest="./PSFree.manifest">  
   <head>
+    <meta charset="UTF-8">
     <script>
         function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));document.title="Installing offline cache: " + Percent + "%";}
         function DisplayCacheProgress(){setTimeout(function(){;document.title="Cache Success !";},1000);setTimeout(function(){window.location.href = document.referrer;},3000);}window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
@@ -176,12 +177,14 @@
       <!-- Select language -->
       <div id="chooselang">
         <h3>Language</h3>
-        <div>
+        <div class="radio-group">
           <label>
-            <input type="radio" name="language" value="en" onchange="savelanguage(); setLanguage('en');"> English
+            <input type="radio" name="language" value="en" onchange="savelanguage(); setLanguage('en');"> 
+            <p id="enLang">English</p>
           </label>
           <label>
-            <input type="radio" name="language" value="ar" onchange="savelanguage(); setLanguage('ar'); "> Arabic
+            <input type="radio" name="language" value="ar" onchange="savelanguage(); setLanguage('ar'); "> 
+            <p id="arLang">Arabic</p>
           </label>
         </div>
       </div>

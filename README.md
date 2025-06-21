@@ -45,7 +45,7 @@ This repo only supports PS4 for now.
 | PS4 | 7.00 - 9.60 |
 
   ## Additional features
-  1. ~~Multiple Language support~~ -- WIP
+  1. Multiple Language support
   2. ~~Custom colors~~ -- WIP
   3. ~~Background switcher~~ -- WIP
  
