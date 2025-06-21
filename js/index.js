@@ -9,6 +9,9 @@ const plsbtn = document.querySelectorAll('.button-container button');
 
 var ps4fw
 
+var ps4FwVersion
+let platform
+
 window.addEventListener('DOMContentLoaded', loadsettings);
 
 document.getElementById('jailbreak').addEventListener('click', () => {
@@ -110,7 +113,7 @@ function CheckFW() {
   if (ps4Regex.test(userAgent)) {
     const firmwareMatch = userAgent.match(/PlayStation 4\/([\d.]+)/);
     const fwVersion = firmwareMatch ? firmwareMatch[1] : null;
-
+    ps4FwVersion = fwVersion;
     if (fwVersion === '7.00' || fwVersion === '7.01' || fwVersion === '7.02' || fwVersion === '7.50' || fwVersion === '7.51' || fwVersion === '7.55' || fwVersion === fwVersion === '8.00' || fwVersion === '8.01' || fwVersion === '8.01' || fwVersion === '8.03' || fwVersion === '8.50' || fwVersion === '8.52' || fwVersion === '9.00' || fwVersion === '9.03' || fwVersion === '9.04' || fwVersion === '9.50' || fwVersion === '9.51' || fwVersion === '9.60') {
       document.getElementById('PS4FW').textContent = `PS4 FW: ${fwVersion} | Compatible`;
       document.getElementById('PS4FW').style.color = 'green';
@@ -127,7 +130,7 @@ function CheckFW() {
 
     document.title = "PSFree | " + fwVersion
   } else {
-    // let platform = 'Unknown platform';
+    // platform = 'Unknown platform';
 
     // if (/Android/.test(userAgent)) platform = 'Android';
     // else if (/iPhone|iPad|iPod/.test(userAgent)) platform = 'iOS';
@@ -238,20 +241,29 @@ function choosejb(hen) {
 }
 
 function showpayloads() {
-  if (document.getElementById('payloadsbtn').textContent == 'Payloads') {
-  document.getElementById('jailbreak-page').style.display = 'none';
-  document.getElementById('PS4FW').style.display = 'none';
-  document.getElementById('payloads-page').style.display = 'block';
-  document.getElementById('payloadsbtn').textContent = 'Jailbreak';
-  localStorage.setItem('visibleDiv', 'payloads-page');
+  let payloadsBtn = document.getElementById('payloadsbtn');
+  let payloadsPage = document.getElementById('payloads-page');
+  let jailbreakPage = document.getElementById('jailbreak-page');
+  let PS4FW = document.getElementById('PS4FW');
+  let storageLang = localStorage.getItem('language');
+  
+  if (!payloadsBtn.classList.contains('active')){
+    jailbreakPage.style.display = 'none';
+    PS4FW.style.display = 'none';
+    payloadsPage.style.display = 'block';
+    if (storageLang == 'en') payloadsBtn.textContent = 'Jailbreak';
+    if (storageLang == 'ar') payloadsBtn.textContent = 'التهكير';
+    localStorage.setItem('visibleDiv', 'payloads-page');
+    payloadsBtn.classList.add('active');
   }else{
-  document.getElementById('jailbreak-page').style.display = 'block';
-  document.getElementById('PS4FW').style.display = 'flex';
-  document.getElementById('payloads-page').style.display = 'none';
-  document.getElementById('payloadsbtn').textContent = 'Payloads';
-  localStorage.setItem('visibleDiv', 'jailbreak-page');
-
-  };
+    jailbreakPage.style.display = 'block';
+    PS4FW.style.display = 'flex';
+    payloadsPage.style.display = 'none';
+    if (storageLang == 'en') payloadsBtn.textContent = 'Payloads';
+    if (storageLang == 'ar') payloadsBtn.textContent = 'الإضافات';
+    localStorage.setItem('visibleDiv', 'jailbreak-page');
+    payloadsBtn.classList.remove('active');
+  }
   CheckFW();
 }
 
@@ -457,7 +469,7 @@ function onCheckboxChange(checked) {
 }
 
 // Language
-// --- Language Strings (from translation-strings immersive) ---
+// Language Strings
 const languages = {
   "en": {
     "title": "PSFree",
@@ -467,7 +479,9 @@ const languages = {
     "menuSettings": "Settings",
     "menuAbout": "About",
     "headerTitle": "PSFree",
-    "ps4FwStatus": "PS4 FW: 0.00 | Compatible",
+    "ps4FwSupported": `PS4 FW: | ${ps4FwVersion} Compatible`,
+    "ps4FwUnsupported": `PS4 FW: | ${ps4FwVersion} Incompatible`,
+    "notPs4": `You're not on a PS4, platform: ${platform}`,
     "jailbreakButtonTitle": "PlayStation",
     "payloadsToolsHeader": "Tools",
     "payloadsGameHeader": "Game",
@@ -543,7 +557,9 @@ const languages = {
     "menuSettings": "الإعدادات",
     "menuAbout": "حول",
     "headerTitle": "PSFree",
-    "ps4FwStatus": "PS4 اصدار: 0.00 | متوافق",
+    "ps4FwSupported": `بلايستايشن 4 إصدار: ${ps4FwVersion} | متوافق`,
+    "ps4FwUnsupported": `بلايستايشن 4 إصدار ${ps4FwVersion || 'غير معروف'} | غير متوافق`,
+    "notPs4": `أنت لست على جهاز بلايستايشن 4. المنصة: ${platform == undefined ? "غير معروفة" : platform}`,
     "jailbreakButtonTitle": "بلايستيشن",
     "payloadsToolsHeader": "الأدوات",
     "payloadsGameHeader": "الألعاب",
@@ -639,8 +655,19 @@ function setLanguage(lang) {
     // Update Header
     document.getElementById('header-title').textContent = strings.headerTitle;
 
-    // Update PS4 FW Status
-    document.getElementById('PS4FW').textContent = strings.ps4FwStatus;
+    // Update PS4FW Message
+    if (ps4FwVersion != undefined && Number(ps4FwVersion) <= 9.6){
+      // For some reason ps4FwVersion variable shows undefined even tho it is.
+      let message = strings.ps4FwSupported.replace("undefined", ps4FwVersion)
+      document.getElementById("PS4FW").textContent = message;
+      document.getElementById("PS4FW").style.color = "green";
+    }else if (ps4FwVersion == undefined || ps4FwVersion == NaN){
+      document.getElementById("PS4FW").textContent = strings.ps4FUnsupported;
+      document.getElementById("PS4FW").style.color = "red";
+    }else {
+      document.getElementById("PS4FW").textContent = strings.notPs4;
+      document.getElementById("PS4FW").style.color = "red";
+    }
 
     // Update Jailbreak Button Title
     document.getElementById('jailbreak').title = strings.jailbreakButtonTitle;
