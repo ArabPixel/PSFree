@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS4 Webkit Exploit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen">
+    <div class="container mx-auto p-6">
+        <div id="header" class="flex justify-between">
+            <h1 class="text-3xl font-bold mb-8">PS4 Webkit Exploit</h1>
+            <p class="mt-2">Supported firmwares 9.00~9.60</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 id="availablePayloads" class="text-xl mb-4">Available Payloads</h2>
+
+
+
+                <div id="payloadsGrid" class="space-y-3">
+                    <!-- payloads injected by js -->
+                    <!-- GoldHEN -->
+                    <div id="GoldHEN" onclick="payloadSelection(this.id)" class="payload-card relative group cursor-pointer transition-all duration-300 hover:scale-105 "
+                        data-payload-id="2">
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 h-full">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center space-x-3">
+                                    <div class="text-2xl">⚙️</div>
+                                    <div>
+                                        <h3 class="font-semibold text-white text-lg">GoldHEN</h3>
+                                        <p class="text-cyan-300 text-sm">v2.4b18</p>
+                                    </div>
+                                </div>
+                                <span class="px-2 py-1 rounded-full text-xs border category-system">
+                                    Recommended
+                                </span>
+                            </div>
+
+                            <p id="description" class="text-white/70 text-sm mb-4 leading-relaxed">Advanced homebrew enabler with
+                                additional features</p>
+
+                            <div class="flex items-center justify-between text-xs text-white/60">
+                                <div class="flex items-center space-x-4">
+
+                                    <div class="flex items-center space-x-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" data-lucide="user"
+                                            class="lucide lucide-user h-3 w-3">
+                                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg>
+                                        <span>SiSTR0</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- VTX HEN -->
+                    <div id="VTXHEN" onclick="payloadSelection(this.id)" class="payload-card relative group cursor-pointer transition-all duration-300 hover:scale-105"
+                        data-payload-id="1">
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 h-full">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center space-x-3">
+                                    <div class="text-2xl">⚙️</div>
+                                    <div>
+                                        <h3 class="font-semibold text-white text-lg">VTX HEN</h3>
+                                        <p class="text-cyan-300 text-sm">v1.03</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p id="description" class="text-white/70 text-sm mb-4 leading-relaxed">A fully implemented kernel exploit for the PS4 with HEN</p>
+
+                            <div class="flex items-center justify-between text-xs text-white/60">
+                                <div class="flex items-center space-x-4">
+
+                                    <div class="flex items-center space-x-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" data-lucide="user"
+                                            class="lucide lucide-user h-3 w-3">
+                                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg>
+                                        <span>EchoStretch</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="exploitStatus" class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-xl mb-4">Exploit Status</h2>
+                <div id="statusMessage" class="mb-4 p-3 bg-gray-700 rounded">
+                    Select a payload to begin
+                </div>
+                <button id="exploitRun" class="w-full bg-blue-600 hover:bg-blue-700 p-3 rounded disabled:opacity-50" disabled>
+                    Run Exploit
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>

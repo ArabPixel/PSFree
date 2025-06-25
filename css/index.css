@@ -1,0 +1,126 @@
+/* Custom CSS for additional styling */
+.tab-content {
+    display: block;
+}
+
+.tab-content.hidden {
+    display: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Payload card hover effects */
+.payload-card {
+    transition: all 0.3s ease;
+}
+
+.payload-card:hover {
+    transform: scale(1.05);
+}
+
+.payload-card.selected {
+    box-shadow: 0 0 0 2px #00d4ff, 0 25px 50px -12px rgba(0, 212, 255, 0.25);
+    border-radius: 12px;
+}
+
+/* Animation for status icons */
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Theme button active state */
+.theme-btn.active {
+    border-color: #00d4ff !important;
+    background-color: rgba(0, 212, 255, 0.1) !important;
+}
+
+/* Background type button active state */
+.bg-type-btn.active {
+    border-color: #00d4ff !important;
+    background-color: rgba(0, 212, 255, 0.1) !important;
+    color: #00d4ff !important;
+}
+
+/* Tab button active state */
+.tab-btn.active {
+    color: #00d4ff !important;
+    border-bottom-color: #00d4ff !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Smooth transitions for background changes */
+body {
+    transition: background 0.5s ease;
+}
+
+/* Category colors */
+.category-homebrew {
+    background-color: rgba(168, 85, 247, 0.2);
+    color: rgb(196, 181, 253);
+    border-color: rgba(168, 85, 247, 0.3);
+}
+
+.category-tools {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: rgb(147, 197, 253);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.category-games {
+    background-color: rgba(34, 197, 94, 0.2);
+    color: rgb(134, 239, 172);
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+.category-system {
+    background-color: rgba(249, 115, 22, 0.2);
+    color: rgb(253, 186, 116);
+    border-color: rgba(249, 115, 22, 0.3);
+}
+
+/* Status display colors */
+.status-preparing {
+    border-color: rgba(251, 191, 36, 0.5) !important;
+    background-color: rgba(251, 191, 36, 0.1) !important;
+}
+
+.status-exploiting {
+    border-color: rgba(6, 182, 212, 0.5) !important;
+    background-color: rgba(6, 182, 212, 0.1) !important;
+}
+
+.status-success {
+    border-color: rgba(34, 197, 94, 0.5) !important;
+    background-color: rgba(34, 197, 94, 0.1) !important;
+}
+
+.status-error {
+    border-color: rgba(239, 68, 68, 0.5) !important;
+    background-color: rgba(239, 68, 68, 0.1) !important;
+}
